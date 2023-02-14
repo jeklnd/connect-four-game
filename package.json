@@ -1,0 +1,32 @@
+{
+  "name": "connect-four",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jeklnd/connect-four.git"
+  },
+  "author": "Jesse Krensel",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeklnd/connect-four/issues"
+  },
+  "homepage": "https://github.com/jeklnd/connect-four#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "jquery": "^3.6.3",
+    "path": "^0.12.7",
+    "sass": "^1.57.1"
+  },
+  "description": "",
+  "devDependencies": {
+    "livereload": "^0.9.3",
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.5"
+  }
+}

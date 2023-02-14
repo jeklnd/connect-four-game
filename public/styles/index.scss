@@ -1,0 +1,671 @@
+:root {
+  --black: #000;
+  --iris: #5c2dd5;
+  --violets-are-blue: #7945ff;
+  --ultra-red: #fd6687;
+  --orange-yellow: #ffce67;
+  --white: #fff;
+  --font-family: "Space Grotesk", sans-serif;
+  --min-width: 320px;
+  --max-width: 1280px;
+  --large-disk-diameter: 69px;
+}
+
+@mixin flex(
+  $flex-flow: row nowrap,
+  $justify-content: center,
+  $align-items: center
+) {
+  display: flex;
+  flex-flow: $flex-flow;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin border-and-shadow {
+  border: 0.1875rem solid #000;
+  box-shadow: 0 0.625rem #000;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a,
+button {
+  cursor: pointer;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  // overflow: hidden;
+  font-family: var(--font-family);
+  font-size: clamp(1rem, 0.917rem + 0.417vw, 1.25rem);
+  line-height: 1.5;
+}
+
+.section-wrapper {
+  max-width: var(--max-width);
+  margin: auto;
+  min-height: 100vh;
+  @include flex(column nowrap, center, center);
+}
+
+section {
+  height: 100vh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: clamp(1.5rem, 0.833rem + 3.333vw, 3.5rem);
+}
+h2 {
+  font-size: clamp(1rem, 0.833rem + 0.833vw, 1.5rem);
+}
+h3 {
+  font-size: clamp(1rem, 0.917rem + 0.417vw, 1.25rem);
+}
+
+/*********************************************
+
+
+Main Menu
+                  
+
+**********************************************/
+#main {
+  background-color: var(--iris);
+  @include flex(column nowrap, center, centeer);
+}
+
+.card {
+  background-color: var(--violets-are-blue);
+  @include border-and-shadow();
+  border-radius: 2.5rem;
+  margin: auto;
+  position: relative;
+  max-width: 90%;
+  @include flex(column nowrap, center, center);
+}
+
+@media (max-width: 455px) {
+  .card {
+    border: none;
+    box-shadow: none;
+  }
+
+  #main {
+    background-color: var(--violets-are-blue);
+  }
+}
+
+.content {
+  max-width: 90%;
+  margin: 2rem;
+  padding: 1rem;
+  @include flex(column nowrap, center, center);
+  gap: 2rem;
+}
+
+.content h2 {
+  text-align: left;
+  margin: 0;
+  padding: 1rem;
+}
+
+.button {
+  margin: 0;
+  padding: 0;
+  max-width: 25rem;
+  width: 100%;
+  height: 4.5rem;
+  border-radius: 1.25rem;
+  @include border-and-shadow();
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: var(--iris);
+    box-shadow: 0rem 0.625rem var(--iris);
+  }
+}
+
+#main .button {
+  color: #000;
+}
+
+.button.play-vs-player {
+  background-color: var(--orange-yellow);
+  @include flex(row nowrap, space-between, center);
+  p {
+    margin-left: 1.25rem;
+  }
+  img {
+    margin-right: 1.0625rem;
+  }
+}
+
+.button.game-rules p {
+  text-align: left;
+  margin-left: 1.25rem;
+}
+
+/*********************************************
+
+
+Rules
+                  
+
+**********************************************/
+#rules {
+  background-color: var(--violets-are-blue);
+  @include flex(column nowrap, center, center);
+}
+
+.rules-card {
+  background-color: var(--white);
+  max-width: 90%;
+  padding: clamp(1rem, 0.667rem + 1.667vw, 2rem);
+  margin: clamp(1rem, 0.667rem + 1.667vw, 2rem);
+  @include border-and-shadow();
+  border-radius: 2.5rem;
+}
+
+.rules-content {
+  @include flex(column nowrap, center, center);
+  max-width: 500px;
+  margin: auto;
+}
+
+#rules h1 {
+  text-align: center;
+  margin: 0;
+}
+
+#rules h2 {
+  color: var(--violets-are-blue);
+}
+
+#rules p {
+  opacity: 0.6611;
+  margin: 0;
+}
+
+#rules h1,
+#how-to {
+  margin-bottom: 1rem;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  row-gap: 0.625rem;
+}
+
+.rules-checkmark {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  border: none;
+  background: transparent;
+}
+
+/*********************************************
+
+                    
+Game
+                  
+
+**********************************************/
+#game {
+  background-color: var(--violets-are-blue);
+  @include flex(column nowrap, center, center);
+  position: relative;
+  z-index: 1;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(fit-content(0), 1fr));
+  grid-template-rows: repeat(4, minmax(0, auto));
+}
+
+#navigation {
+  @include flex(row nowrap, space-between, center);
+  grid-area: 1 / 2 / 2 / 3;
+  padding: 1rem;
+}
+
+a {
+  text-decoration: none;
+  background-color: var(--iris);
+  color: var(--white);
+  border-radius: 1.25rem;
+  padding: 0.5625rem 1.25rem 0.625rem 1.3125rem;
+  cursor: pointer;
+  transition: 0.2s ease-in-out;
+}
+
+a:hover,
+a:focus,
+a:active {
+  background-color: var(--ultra-red);
+}
+
+.arrows {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  min-height: 2.5rem;
+  width: 100%;
+  grid-area: 2/2/3/3;
+}
+
+.arrow {
+  justify-self: center;
+  height: 100%;
+}
+
+.hovering-arrows-grid-item {
+  @include flex(row nowrap, center, center);
+  height: 2rem;
+}
+
+#board {
+  @include flex(row nowrap, center, center);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+}
+
+/*********************************************
+                    
+Game: Game Board        
+
+**********************************************/
+.game-board {
+  width: clamp(20.938rem, 14.75rem + 30.938vw, 39.5rem);
+  height: 100%;
+  position: relative;
+  grid-area: 3/2/4/3;
+}
+
+#black-board,
+#white-board {
+  width: 100%;
+}
+
+#white-board {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2;
+}
+
+/*********************************************
+                    
+Game: Player Scoreboards          
+
+**********************************************/
+.scoreboard {
+  background-color: var(--white);
+  width: 141px;
+  height: 187px;
+  margin: 4%;
+  @include border-and-shadow();
+  border-radius: 1.25rem;
+  align-self: center;
+  // justify-self: center;
+  position: relative;
+}
+
+.scoreboard h1,
+.scoreboard h3 {
+  margin: 0;
+}
+
+.scoreboard img {
+  position: absolute;
+  width: 54px;
+  height: 59px;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scoreboard-text {
+  position: relative;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.scoreboard-text h1 {
+  font-size: clamp(2rem, 1.5rem + 2.5vw, 3.5rem);
+}
+
+.player-name {
+  text-align: center;
+}
+.player-score {
+  text-align: center;
+}
+#left {
+  grid-area: 3/1/4/2;
+  justify-self: end;
+  margin-right: 2rem;
+}
+
+#right {
+  grid-area: 3/3/4/4;
+  margin-left: 2rem;
+}
+
+.on-left {
+  display: none;
+}
+
+@media (max-width: 1070px) {
+  .arrows {
+    display: none;
+  }
+
+  #right,
+  #left {
+    grid-area: 2/2/3/3;
+  }
+
+  #left {
+    justify-self: start;
+    margin-left: 5%;
+  }
+
+  #right {
+    justify-self: end;
+    margin-right: 5%;
+  }
+
+  .on-left {
+    display: block;
+  }
+
+  .on-right {
+    display: none;
+  }
+
+  .scoreboard {
+    max-width: clamp(8.875rem, 6.167rem + 13.542vw, 17rem);
+    width: 100%;
+    max-height: clamp(5.063rem, 4.667rem + 1.979vw, 6.25rem);
+  }
+
+  #left img {
+    top: 50%;
+    left: 0;
+    transform: translate(-50%, -50%);
+  }
+
+  #right img {
+    top: 50%;
+    left: auto;
+    right: 0;
+    transform: translate(50%, -50%);
+  }
+
+  .scoreboard-text {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    top: 50%;
+  }
+
+  #left h1 {
+    position: relative;
+    left: 10%;
+  }
+
+  #right h1 {
+    position: relative;
+    right: 10%;
+  }
+}
+
+@media (max-width: 440px) {
+  .scoreboard-text {
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #left h1 {
+    left: 0;
+  }
+
+  #right h1 {
+    right: 0;
+  }
+  .on-left {
+    display: none;
+  }
+
+  .on-right {
+    display: block;
+  }
+}
+
+/*********************************************
+                    
+Game: Announcer           
+
+**********************************************/
+#announcer {
+  margin: auto;
+  grid-area: 4 / 1 / 5 / 4;
+  position: relative;
+  bottom: clamp(1.5rem, 1rem + 2.5vw, 3rem);
+  z-index: 3;
+}
+
+#announcer img {
+  width: 191px;
+}
+
+.announcer-text {
+  position: absolute;
+  width: 100%;
+}
+
+.announcer-text h1 {
+  font-size: 56px;
+}
+
+.announcer-text h3 {
+  font-size: 16px;
+}
+
+.announcer-text > * {
+  margin: 0;
+}
+
+.timer {
+  color: #fff;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  text-align: center;
+}
+
+.winner {
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+#timer-card {
+  // display: none;
+}
+
+#winner-card {
+  display: none;
+  width: 285px;
+  height: 160px;
+  @include border-and-shadow();
+  border-radius: 1.25rem;
+  background-color: #fff;
+}
+
+#winner-card a {
+  width: 130px;
+  height: 39px;
+  padding: 1rem 0.5rem;
+  font-size: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#colored-bar {
+  position: absolute;
+  background-color: var(--iris);
+  border-radius: 60px 60px 0 0;
+  grid-area: 4 / 1 / 5 / 4;
+  z-index: -1;
+  height: 100%;
+  width: 100vw;
+}
+
+/*********************************************
+
+                    
+Disk Grid
+                  
+
+**********************************************/
+.grid-cell-slots {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: repeat(6, minmax(0, 1fr));
+  margin: 2.5% 1% 0;
+  height: 87%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.grid-cell-slots img {
+  // display: none;
+  align-self: center;
+  justify-self: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.white-counter {
+  position: absolute;
+  max-width: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  margin: 0;
+}
+
+.game-grid-files {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  margin: 2.5% 2.5% 0;
+  height: 87%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  cursor: pointer;
+  z-index: 4;
+}
+
+/*********************************************
+
+                    
+Ingame Menu
+                  
+
+**********************************************/
+#menu p {
+  margin: 1.3125rem auto 1.25rem;
+
+
+}
+.menu-wrapper {
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  z-index: 99;
+  display: flex;
+}
+
+.outer-menu-container {
+  width: 30rem;
+  height: 30.6875rem;
+  background-color: var(--violets-are-blue);
+  @include border-and-shadow();
+
+  border-radius: 2.5rem;
+  @include flex(row nowrap, center, center);
+  max-width: 80rem;
+  margin: auto;
+}
+
+.inner-menu-container {
+  height: 100%;
+}
+
+.ingame-header {
+  color: var(--white);
+  margin: 3.125rem auto 2.75rem;
+  text-align: center;
+}
+
+.menu-buttons-container {
+  width: 25rem;
+  height: 17.25rem;
+  @include flex(column nowrap, center, center);
+  gap: 1.875rem;
+}
+
+#new-game-button, #continue-game-button {
+  color: #000;
+}
+
+#quit-game-button {
+  background-color: var(--ultra-red);
+  color: #fff;
+}

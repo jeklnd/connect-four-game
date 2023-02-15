@@ -198,11 +198,29 @@ const winningCombinations = [
 
 //////////////////////////////////////////////
 
-// Startup Screen
+// Pause Menu
 
 //////////////////////////////////////////////
-$("section").hide();
-$("#main").show();
+const togglePauseMenu = () => {
+  if (
+    document.getElementById("pause").style.display === "none" ||
+    document.getElementById("pause").style.display === ""
+  ) {
+    document.getElementById("pause").style.display = "block";
+  } else {
+    document.getElementById("pause").style.display = "none";
+  }
+};
+
+document
+  .getElementById("menu-button")
+  .addEventListener("click", togglePauseMenu);
+document
+  .getElementById("continue-game-button")
+  .addEventListener("click", togglePauseMenu);
+document
+  .getElementById("new-game-button")
+  .addEventListener("click", togglePauseMenu);
 
 //////////////////////////////////////////////
 
@@ -210,9 +228,9 @@ $("#main").show();
 
 //////////////////////////////////////////////
 function startCountdown() {
-  if (!document.getElementById("timer-card").style.display === "none") {
+  if (document.getElementById("timer-card").style.display !== "none") {
     intervalId = setInterval(countdown, 1000);
-    return intervalId
+    return intervalId;
   }
 }
 
@@ -224,7 +242,7 @@ function stopCountdown() {
 function countdown() {
   if (startingTime != 0) {
     startingTime -= 1;
-    console.log(startingTime);
+    // console.log(startingTime);
   } else {
     stopCountdown();
 
@@ -235,13 +253,13 @@ function countdown() {
     }
   }
 
-  $("#seconds").html(`${startingTime}s`);
+  document.getElementById("seconds").innerHTML = `${startingTime}s`;
 }
 
 function resetSeconds() {
   stopCountdown();
   startingTime = 30;
-  $("#seconds").html(`${startingTime}s`);
+  document.getElementById("seconds").innerHTML = `${startingTime}s`;
 }
 
 //////////////////////////////////////////////
@@ -251,21 +269,24 @@ function resetSeconds() {
 //////////////////////////////////////////////
 
 // Rules
-function addHoverEffect() {
-  let checkmark = document.getElementById("checkmark");
-  // console.log(checkmark)
-  checkmark.addEventListener("mouseenter", () => {
-    checkmark.src = "./assets/images/icon-check-hover.svg";
-  });
-  checkmark.addEventListener("mouseleave", () => {
-    checkmark.src = "./assets/images/icon-check.svg";
-  });
+function colorCheckmark() {
+  if (document.getElementById("checkmark" !== null)) {
+    let checkmark = document.getElementById("checkmark");
+    checkmark.addEventListener("mouseenter", () => {
+      console.log("enter");
+      checkmark.src = "./assets/images/icon-check-hover.svg";
+    });
+    checkmark.addEventListener("mouseleave", () => {
+      console.log("enter");
+      checkmark.src = "./assets/images/icon-check.svg";
+    });
+  }
 }
-addHoverEffect();
+colorCheckmark();
 
 // Game
 function displayTimeCard(object) {
-  document.querySelector(".announcer-text").innerHTML = object.whosTurn;
+  document.querySelector(".announcer-text").firstChild.innerHTML = object.whosTurn;
   document
     .getElementById("timer-card")
     .children[1].setAttribute("src", object.imageSrc);
@@ -291,7 +312,9 @@ function displayWhiteCircles(combination) {
     whiteCounter.src = "./assets/images/white-circle.svg";
     whiteCounter.classList.add("white-counter");
     document.getElementById(`board-cell-${number}`).style.position = "absolute";
-    document.getElementById(`board-cell-${number}`).parentNode.appendChild(whiteCounter);
+    document
+      .getElementById(`board-cell-${number}`)
+      .parentNode.appendChild(whiteCounter);
   });
 }
 
@@ -305,6 +328,14 @@ function resetSpacerColor() {
   document.getElementById("colored-bar").style.backgroundColor = "#5c2dd5";
 }
 
+const positionColoredBar = () => {
+  document.getElementById("colored-bar").style.top =
+    document.getElementById("announcer").offsetTop;
+  document.getElementById("colored-bar").height =
+    window.innerHeight - document.getElementById("announcer").offsetTop;
+};
+setInterval(positionColoredBar, 1);
+
 //////////////////////////////////////////////
 
 // Turn Logic
@@ -315,14 +346,14 @@ function passTheTurn() {
     isPlayerOnesTurn = false;
     isPlayerTwosTurn = true;
     displayTimeCard(playerTwo.timeCard);
-    // console.log("It is now Player Two's turn");
+    console.log("It is now Player Two's turn");
   } else {
     isPlayerOnesTurn = true;
     isPlayerTwosTurn = false;
     displayTimeCard(playerOne.timeCard);
-    // console.log("It is now Player One's turn");
+    console.log("It is now Player One's turn");
   }
-  toggleHoveringArrowColor();
+  colorArrows();
   resetSeconds();
   startCountdown();
 }
@@ -357,8 +388,10 @@ function resetScore() {
 
 function incrementScore(player) {
   player.score += 1;
-  $(`#player-${player.id}`).html(player.score);
-  $(`#mini-player-${player.id}`).html(player.score);
+  document.getElementById(`player-${player.id}`).innerHTML = player.score;
+  if (player === playerTwo) {
+    document.getElementById("player-2-right").innerHTML = player.score;
+  }
 }
 
 function announceTheWinner(player) {
@@ -395,7 +428,6 @@ function playAgain() {
 }
 
 function restartGame() {
-  showGame();
   playAgain();
 }
 
@@ -413,42 +445,53 @@ function quitGame() {
 // Hovering Arrows
 
 //////////////////////////////////////////////
-function createHoveringArrows() {
-  for (let i = 0; i < 7; i++) {
-    grid = document.querySelector(".arrows");
-    cell = document.createElement("div");
-    cell.classList.add("arrow");
-    cell.style.display = "none";
-    cell.id = `cell-${i}`;
 
-    redArrow = document.createElement("img");
-    redArrow.src = "./assets/images/marker-red-vertical-box-shadow.svg";
-    redArrow.classList.add("hovering-arrow");
-    cell.appendChild(redArrow);
-    grid.appendChild(cell);
+function createArrows() {
+  const arrows = document.querySelector(".arrows");
+  for (let i = 0; i < 7; i++) {
+    let img = document.createElement("img");
+    img.src = "./assets/images/marker-red-vertical-box-shadow.svg";
+    img.classList.add("arrow");
+    img.id = `arrow-${i}`;
+    img.style.visibility = "hidden";
+    arrows.appendChild(img);
   }
 }
-createHoveringArrows();
 
-function toggleHoveringArrowColor() {
-  allArrowCells = document.querySelectorAll(".arrow");
-  // console.log(allArrowCells);
+function revealArrows() {
+  const arrows = document.querySelectorAll(".arrow");
+  const files = document.querySelectorAll(".file");
+  files.forEach((file, index) => {
+    file.addEventListener("mouseenter", () => {
+      arrows[index].style.visibility = "visible";
+    });
+    file.addEventListener("mouseleave", () => {
+      arrows[index].style.visibility = "hidden";
+    });
+  });
+}
+
+function colorArrows() {
+  const arrows = document.querySelectorAll(".arrow");
 
   if (isPlayerOnesTurn) {
-    allArrowCells.forEach((arrowCell) => {
-      arrowCell.firstChild.src =
-        "./assets/images/marker-red-vertical-box-shadow.svg";
+    arrows.forEach((arrow) => {
+      arrow.src = "./assets/images/marker-red-vertical-box-shadow.svg";
     });
   } else {
-    allArrowCells.forEach((arrowCell) => {
-      arrowCell.firstChild.src = "./assets/images/marker-yellow.svg";
+    arrows.forEach((arrow) => {
+      arrow.src = "./assets/images/marker-yellow.svg";
     });
   }
 }
+
+createArrows();
+revealArrows();
+colorArrows();
 
 //////////////////////////////////////////////
 
-// Disk logic
+// Disks
 
 //////////////////////////////////////////////
 
@@ -471,20 +514,20 @@ const dropDisk = (e) => {
   const fileId = e.currentTarget.id;
   const lowestSlot = Math.max(...emptySlots[fileId]);
 
-  // console.log(
-  //   `\nDisk dropped in file ${fileId}.\n
-  //   Empty slots in file ${fileId}: [${emptySlots[fileId].join(", ")}].\n
-  //   The lowest slot in file ${fileId} is slot ${lowestSlot}.
-  //   Slot ${lowestSlot} is empty: ${isSlotEmpty[lowestSlot]}
-  //   `
-  // );
+  console.log(
+    `\nDisk dropped in file ${fileId}.\n
+    Empty slots in file ${fileId}: [${emptySlots[fileId].join(", ")}].\n
+    The lowest slot in file ${fileId} is slot ${lowestSlot}.
+    Slot ${lowestSlot} is empty: ${isSlotEmpty[lowestSlot]}
+    `
+  );
 
   if (isSlotEmpty[lowestSlot]) {
     isSlotEmpty[lowestSlot] = false;
     // console.log("  Filling slot...");
 
-    function loadVisibleDisk(slot) {
-      const disk = document.getElementById(`board-cell-${slot}`);
+    // function loadVisibleDisk(slot) {
+      let disk = document.getElementById(`board-cell-${lowestSlot}`);
       // console.log(disk);
       disk.style.visibility = "visible";
       if (isPlayerTwosTurn) {
@@ -492,16 +535,16 @@ const dropDisk = (e) => {
       } else if (isPlayerOnesTurn) {
         disk.src = "./assets/images/counter-red-large.svg";
       }
-    }
-    loadVisibleDisk(lowestSlot);
+    // }
+    // loadVisibleDisk(lowestSlot);
 
     if (emptySlots[fileId].length != 0) {
       emptySlots[fileId].shift(1);
-      // console.log(`The remaining empty slots in the file are ${emptySlots[fileId]}\n`);
+      console.log(`The remaining empty slots in the file are ${emptySlots[fileId]}\n`);
     }
-    // console.log(`  Slot ${lowestSlot} is empty: ${isSlotEmpty[lowestSlot]}`);
+    console.log(`  Slot ${lowestSlot} is empty: ${isSlotEmpty[lowestSlot]}`);
   }
-  // console.log(`  Empty slots in file ${fileId}: [${emptySlots[fileId].join(",")}].`);
+  console.log(`  Empty slots in file ${fileId}: [${emptySlots[fileId].join(",")}].`);
 
   updatePlayersSlotTrackers(lowestSlot);
   checkWinConditions();
@@ -513,12 +556,12 @@ function updatePlayersSlotTrackers(slot) {
   } else {
     playerTwo.tracker.push(slot);
   }
-  // console.log(`Currently, playerOne's tracker is ${playerOne.tracker.join(", ")}.`);
-  // console.log(`Currently, playerTwo's tracker is ${playerTwo.tracker.join(", ")}.`);
+  console.log(`Currently, playerOne's tracker is ${playerOne.tracker.join(", ")}.`);
+  console.log(`Currently, playerTwo's tracker is ${playerTwo.tracker.join(", ")}.`);
 }
 
 function hideDisks() {
-  let slots = document.querySelector(".grid-cell-slots").children
+  let slots = document.querySelector(".grid-cell-slots").children;
   for (let i = 0; i < slots.length; i++) {
     slots[i].firstChild.style.visibility = "hidden";
   }
@@ -538,28 +581,6 @@ function resetDiskSlots() {
 // Event Listeners
 
 //////////////////////////////////////////////
-function revealHoveringArrows() {
-  const arrowCell = document.querySelectorAll(".arrow");
-  const gameBoardFile = document.querySelectorAll(".file");
-  gameBoardFile.forEach((file, index) => {
-    file.addEventListener("mouseenter", () => {
-      arrowCell[index].style.display = "block";
-      // arrowCell[index].classList.add("hovered");
-    });
-    file.addEventListener("mouseleave", () => {
-      arrowCell[index].style.display = "none";
-      // arrowCell[index].classsList.remove("hovered");
-    });
-  });
-}
-
-const positionColoredBar = () => {
-  document.getElementById("colored-bar").style.top =
-    document.getElementById("announcer").offsetTop;
-  document.getElementById("colored-bar").height =
-    window.innerHeight - document.getElementById("announcer").offsetTop;
-};
-setInterval(positionColoredBar, 1);
 
 function turnBoardOn() {
   for (i = 0; i < 7; i++) {
@@ -571,8 +592,9 @@ function turnBoardOn() {
     file.style.cursor = "pointer";
   });
 
-  revealHoveringArrows();
+  revealArrows();
 }
+turnBoardOn()
 
 function turnBoardOff() {
   for (i = 0; i < 7; i++) {
@@ -587,40 +609,13 @@ function turnBoardOff() {
 
 //////////////////////////////////////////////
 
-// Button Logic
-
-//////////////////////////////////////////////
-const showMain = () => {
-  $("section").hide();
-  $("#main").show();
-};
-
-const showRules = () => {
-  $("section").hide();
-  $("#rules").show();
-  console.log("clicked");
-};
-
-const showGame = () => {
-  $("section").hide();
-  $("#game").show();
-};
-
-const showMenu = () => {
-  $("#menu").show();
-};
-
-//////////////////////////////////////////////
-
 // Button Events
 
 //////////////////////////////////////////////
-$("#play-vs-player-button").click(showGame).click(turnBoardOn);
-$("#game-rules-button").click(showRules);
-$("#checkmark").click(showMain);
-$("#menu-button").click(showMenu).click(stopCountdown);
-$("#restart-button").click(showGame).click(playAgain);
-$("#continue-game-button").click(showGame).click(startCountdown);
-$("#new-game-button").click(showGame).click(playAgain).click(resetScore);
-$("#quit-game-button").click(quitGame);
+$("#play-vs-player-button").click(turnBoardOn);
+$("#menu-button").click(stopCountdown);
+$("#restart-button").click(playAgain);
+$("#continue-game-button").click(startCountdown);
+$("#new-game-button").click(playAgain).click(resetScore);
+// $("#quit-game-button").click(quitGame);
 $("#play-again-button").click(playAgain);

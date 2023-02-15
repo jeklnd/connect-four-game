@@ -1,0 +1,88 @@
+<%- include('partials/head'); %>
+
+<section id="game">
+  <div class="grid">
+    <article id="navigation">
+      <a id="menu-button">MENU</a>
+      <img src="./assets/images/logo.svg" />
+      <a id="restart-button">RESTART</a>
+    </article>
+
+    <article class="arrows"></article>
+
+    <div id="left" class="scoreboard">
+      <img src="./assets/images/player-one.svg" />
+      <div class="scoreboard-text">
+        <h3 class="player-name">PLAYER 1</h3>
+        <h1 id="player-1" class="player-score">0</h1>
+      </div>
+    </div>
+    <div class="game-board">
+      <img id="black-board" src="./assets/images/board-layer-black-large.svg" />
+      <img id="white-board" src="./assets/images/board-layer-white-large.svg" />
+      <div class="grid-cell-slots"></div>
+
+      <div class="game-grid-files">
+        <div id="0" class="file"></div>
+        <div id="1" class="file"></div>
+        <div id="2" class="file"></div>
+        <div id="3" class="file"></div>
+        <div id="4" class="file"></div>
+        <div id="5" class="file"></div>
+        <div id="6" class="file"></div>
+      </div>
+    </div>
+    <div id="right" class="scoreboard">
+      <img src="./assets/images/player-two.svg" />
+      <div class="scoreboard-text">
+        <h1 id="player-2" class="player-score on-left">0</h1>
+        <h3 class="player-name">PLAYER 2</h3>
+        <h1 id="player-2-right" class="player-score on-right">0</h1>
+      </div>
+    </div>
+
+    <article id="announcer">
+      <div id="timer-card">
+        <div class="announcer-text timer">
+          <h3>PLAYER 1'S TURN</h3>
+          <h1 id="seconds">PLAY</h1>
+        </div>
+        <img src="./assets/images/turn-background-red.svg" />
+      </div>
+      <div id="winner-card">
+        <div class="announcer-text winner">
+          <h3 id="winning-player">PLAYER 1</h3>
+          <h1>WINS</h1>
+          <a id="play-again-button">PLAY AGAIN</a>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div id="colored-bar"></div>
+</section>
+
+<section id="pause">
+  <div class="menu-wrapper">
+    <div class="outer-menu-container">
+      <div class="inner-menu-container">
+        <h1 class="ingame-header">PAUSE</h1>
+        <div class="menu-buttons-container">
+          <button
+            id="continue-game-button"
+            class="button continue"
+            type="button"
+          >
+            <h2>CONTINUE GAME</h2>
+          </button>
+          <button id="new-game-button" class="button new-game" type="button">
+            <h2>NEW GAME</h2>
+          </button>
+          <a id="quit-game-button" class="button quit" href="/">
+            <h2>QUIT GAME</h2>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<%- include('partials/foot'); %>

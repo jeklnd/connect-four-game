@@ -1,0 +1,48 @@
+<%- include('partials/head'); %>
+<section id="rules">
+  <!-- <div class="rules-spacer"></div> -->
+  <div class="rules-card">
+    <div class="rules-content">
+      <h1 id="rules-header">RULES</h1>
+      <div id="objective">
+        <h2 class="card-header">OBJECTIVE</h2>
+        <p>
+          Be the first player to connect 4 of the same colored discs in a row
+          (either vertically, horizontally, or diagonally).
+        </p>
+      </div>
+      <div id="how-to">
+        <h2 class="card-header">HOW TO PLAY</h2>
+        <div class="grid-container">
+          <div>1</div>
+          <p>Red goes first in the first game.</p>
+          <div>2</div>
+          <p>
+            Players must alternate turns, and only one disc can be dropped in
+            each turn.
+          </p>
+          <div>3</div>
+          <p>The game ends when there is a 4-in-a-row or a stalemate.</p>
+          <div>4</div>
+          <p>The starter of the previous game goes second on the next game.</p>
+        </div>
+      </div>
+    </div>
+    <a id="game-rules-checkmark" class="rules-checkmark" href="/">
+      <!-- <img id="checkmark" src="./assets/images/icon-check.svg" /> -->
+      <?xml version="1.0" encoding="UTF-8"?>
+      <svg  id="checkmark" width="70px" height="75px" viewBox="0 0 70 75" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+          <title>icon-check</title>
+          <g id="Designs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+              <g id="icon-check">
+                  <circle id="Oval-Copy-37" fill="#000000" cx="35" cy="35" r="35"></circle>
+                  <circle id="Oval-Copy-38" fill="#000000" cx="35" cy="40" r="35"></circle>
+                  <circle id="Oval-Copy-39" fill="#FD6687" cx="35" cy="35" r="32"></circle>
+                  <polyline id="Path" stroke="#FFFFFF" stroke-width="3" points="20 34.5819497 30.2640104 44.84596 50.1099704 25"></polyline>
+              </g>
+          </g>
+      </svg>
+    </a>
+  </div>
+</section>
+<%- include('partials/foot'); %>

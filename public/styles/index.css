@@ -36,6 +36,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
+  overflow: hidden;
   font-family: var(--font-family);
   font-size: clamp(1rem, 0.917rem + 0.417vw, 1.25rem);
   line-height: 1.5;
@@ -169,6 +170,10 @@ Main Menu
   margin-left: 1.25rem;
 }
 
+#game-rules-button {
+  background-color: #fff;
+}
+
 /*********************************************
 
 
@@ -192,6 +197,7 @@ Rules
   border: 0.1875rem solid #000;
   box-shadow: 0 0.625rem #000;
   border-radius: 2.5rem;
+  position: relative;
 }
 
 .rules-content {
@@ -234,6 +240,18 @@ Rules
   transform: translateX(-50%);
   border: none;
   background: transparent;
+  padding: 0;
+}
+
+#checkmark:hover #Oval-Copy-37,
+#checkmark:focus #Oval-Copy-37,
+#checkmark:active #Oval-Copy-37 {
+  fill: #5c2dd5;
+}
+#checkmark:hover #Oval-Copy-38,
+#checkmark:focus #Oval-Copy-38,
+#checkmark:active #Oval-Copy-38 {
+  fill: #5c2dd5;
 }
 
 /*********************************************
@@ -278,15 +296,16 @@ a {
   transition: 0.2s ease-in-out;
 }
 
-a:hover,
-a:focus,
-a:active {
+#navigation a:hover,
+#navigation a:focus,
+#navigation a:active {
   background-color: var(--ultra-red);
 }
 
 .arrows {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: 1fr;
   min-height: 2.5rem;
   width: 100%;
   grid-area: 2/2/3/3;
@@ -294,7 +313,6 @@ a:active {
 
 .arrow {
   justify-self: center;
-  height: 100%;
 }
 
 .hovering-arrows-grid-item {
@@ -616,7 +634,11 @@ Ingame Menu
 
 
 **********************************************/
-#menu p {
+#pause {
+  display: none;
+}
+
+#pause p {
   margin: 1.3125rem auto 1.25rem;
 }
 
@@ -665,11 +687,13 @@ Ingame Menu
   gap: 1.875rem;
 }
 
-#new-game-button, #continue-game-button {
+#new-game-button,
+#continue-game-button {
   color: #000;
 }
 
 #quit-game-button {
+  text-align: center;
   background-color: var(--ultra-red);
   color: #fff;
 }/*# sourceMappingURL=index.css.map */

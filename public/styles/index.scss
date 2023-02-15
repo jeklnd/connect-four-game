@@ -52,7 +52,7 @@ body {
   margin: 0;
   padding: 0;
   height: 100%;
-  // overflow: hidden;
+  overflow: hidden;
   font-family: var(--font-family);
   font-size: clamp(1rem, 0.917rem + 0.417vw, 1.25rem);
   line-height: 1.5;
@@ -171,6 +171,10 @@ Main Menu
   margin-left: 1.25rem;
 }
 
+#game-rules-button {
+  background-color: #fff;
+}
+
 /*********************************************
 
 
@@ -190,6 +194,7 @@ Rules
   margin: clamp(1rem, 0.667rem + 1.667vw, 2rem);
   @include border-and-shadow();
   border-radius: 2.5rem;
+  position: relative;
 }
 
 .rules-content {
@@ -229,6 +234,18 @@ Rules
   transform: translateX(-50%);
   border: none;
   background: transparent;
+  padding: 0;
+}
+
+#checkmark:hover,
+#checkmark:focus,
+#checkmark:active {
+  #Oval-Copy-37 {
+    fill: #5c2dd5;
+  }
+  #Oval-Copy-38 {
+    fill: #5c2dd5;
+  }
 }
 
 /*********************************************
@@ -243,6 +260,7 @@ Game
   @include flex(column nowrap, center, center);
   position: relative;
   z-index: 1;
+  // height: 90%;
 }
 
 .grid {
@@ -267,15 +285,16 @@ a {
   transition: 0.2s ease-in-out;
 }
 
-a:hover,
-a:focus,
-a:active {
+#navigation a:hover,
+#navigation a:focus,
+#navigation a:active {
   background-color: var(--ultra-red);
 }
 
 .arrows {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-rows: 1fr;
   min-height: 2.5rem;
   width: 100%;
   grid-area: 2/2/3/3;
@@ -283,7 +302,7 @@ a:active {
 
 .arrow {
   justify-self: center;
-  height: 100%;
+  // height: 100%;
 }
 
 .hovering-arrows-grid-item {
@@ -617,10 +636,11 @@ Ingame Menu
                   
 
 **********************************************/
-#menu p {
+#pause {
+  display: none;
+}
+#pause p {
   margin: 1.3125rem auto 1.25rem;
-
-
 }
 .menu-wrapper {
   height: 100vh;
@@ -661,11 +681,13 @@ Ingame Menu
   gap: 1.875rem;
 }
 
-#new-game-button, #continue-game-button {
+#new-game-button,
+#continue-game-button {
   color: #000;
 }
 
 #quit-game-button {
+  text-align: center;
   background-color: var(--ultra-red);
   color: #fff;
 }

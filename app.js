@@ -16,8 +16,8 @@ app.use(express.static(publicDirectory));
 //   })
 // );
 // app.use(helmet());
-// app.set("views", "./views");
-// app.set("view engine", "ejs");
+app.set("views", "./views");
+app.set("view engine", "ejs");
 
 // live-reload browser on client side changes
 const liveReloadServer = livereload.createServer();
@@ -28,10 +28,22 @@ app.get("/", (req, res) => {
   res.render("index.html");
 });
 
+app.get("/game", (req, res) => {
+  res.render("game");
+});
+
+app.get("/rules", (req, res) => {
+  res.render("rules");
+});
+
+app.get("/pause", (req, res) => {
+  res.render("pause");
+});
+
 app.listen(process.env.PORT || 5000, () => {
-    if (process.env.PORT) {
-        console.log("Listening on port " + process.env.PORT);
-    } else {
-        console.log("Listening on port " + 5000);
-    }
+  if (process.env.PORT) {
+    console.log("Listening on port " + process.env.PORT);
+  } else {
+    console.log("Listening on port " + 5000);
+  }
 });

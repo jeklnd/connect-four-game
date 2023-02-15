@@ -28,162 +28,29 @@
       <div class="card">
         <div class="content">
           <img src="./assets/images/logo.svg" />
-          <button
+          <a
             id="play-vs-player-button"
             class="button play-vs-player"
             type="button"
+            href="/game"
           >
             <h2>PLAY VS PLAYER</h2>
             <img
               class="button-image"
               src="./assets/images/player-vs-player.svg"
             />
-          </button>
-          <button
+          </a>
+          <a
             id="game-rules-button"
             class="button game-rules"
             type="button"
-          >
+            href="/rules">
             <h2>GAME RULES</h2>
-          </button>
+          </a>
         </div>
       </div>
     </section>
 
-    <section id="rules">
-      <!-- <div class="rules-spacer"></div> -->
-      <div class="rules-card">
-        <div class="rules-content">
-          <h1 id="rules-header">RULES</h1>
-          <div id="objective">
-            <h2 class="card-header">OBJECTIVE</h2>
-            <p>
-              Be the first player to connect 4 of the same colored discs in a
-              row (either vertically, horizontally, or diagonally).
-            </p>
-          </div>
-          <div id="how-to">
-            <h2 class="card-header">HOW TO PLAY</h2>
-            <div class="grid-container">
-              <div>1</div>
-              <p>Red goes first in the first game.</p>
-              <div>2</div>
-              <p>
-                Players must alternate turns, and only one disc can be dropped
-                in each turn.
-              </p>
-              <div>3</div>
-              <p>The game ends when there is a 4-in-a-row or a stalemate.</p>
-              <div>4</div>
-              <p>
-                The starter of the previous game goes second on the next game.
-              </p>
-            </div>
-          </div>
-        </div>
-        <button id="game-rules-checkmark" class="rules-checkmark">
-          <img id="checkmark" src="./assets/images/icon-check.svg" />
-        </button>
-      </div>
-    </section>
-
-    <section id="game">
-      <!-- <div id="top-spacer" class="spacer"></div> -->
-      <div class="grid">
-        <article id="navigation">
-          <a id="menu-button">MENU</a>
-          <img src="./assets/images/logo.svg" />
-          <a id="restart-button">RESTART</a>
-        </article>
-
-        <article class="arrows"></article>
-
-        <!-- <article id="board"> -->
-        <div id="left" class="scoreboard">
-          <img src="./assets/images/player-one.svg" />
-          <div class="scoreboard-text">
-            <h3 class="player-name">PLAYER 1</h3>
-            <h1 id="player-1" class="player-score">0</h1>
-          </div>
-        </div>
-        <div class="game-board">
-          <img
-            id="black-board"
-            src="./assets/images/board-layer-black-large.svg"
-          />
-          <img
-            id="white-board"
-            src="./assets/images/board-layer-white-large.svg"
-          />
-          <div class="grid-cell-slots"></div>
-
-          <div class="game-grid-files">
-            <div id="0" class="file"></div>
-            <div id="1" class="file"></div>
-            <div id="2" class="file"></div>
-            <div id="3" class="file"></div>
-            <div id="4" class="file"></div>
-            <div id="5" class="file"></div>
-            <div id="6" class="file"></div>
-          </div>
-        </div>
-        <div id="right" class="scoreboard">
-          <img src="./assets/images/player-two.svg" />
-          <div class="scoreboard-text">
-            <h1 class="player-score on-left">0</h1>
-            <h3 class="player-name">PLAYER 2</h3>
-            <h1 class="player-score on-right">0</h1>
-          </div>
-        </div>
-        <!-- </article> -->
-        <article id="announcer">
-          <div id="timer-card">
-            <div class="announcer-text timer">
-              <h3>PLAYER 1'S TURN</h3>
-              <h1 id="seconds">PLAY</h1>
-            </div>
-            <img src="./assets/images/turn-background-red.svg" />
-          </div>
-          <div id="winner-card">
-            <div class="announcer-text winner">
-              <h3 id="winning-player">PLAYER 1</h3>
-              <h1>WINS</h1>
-              <a id="play-again-button">PLAY AGAIN</a>
-            </div>
-          </div>
-        </article>
-      </div>
-      <div id="colored-bar"></div>
-    </section>
-
-    <section id="menu">
-      <div class="menu-wrapper">
-        <div class="outer-menu-container">
-          <div class="inner-menu-container">
-            <h1 class="ingame-header">PAUSE</h1>
-            <div class="menu-buttons-container">
-              <button
-                id="continue-game-button"
-                class="button continue"
-                type="button"
-              >
-                <h2>CONTINUE GAME</h2>
-              </button>
-              <button
-                id="new-game-button"
-                class="button new-game"
-                type="button"
-              >
-                <h2>NEW GAME</h2>
-              </button>
-              <button id="quit-game-button" class="button quit" type="button">
-                <h2>QUIT GAME</h2>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
     <script src="./index.js"></script>
     <script>

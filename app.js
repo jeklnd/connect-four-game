@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
-const livereload = require("livereload");
+// const livereload = require("livereload");
 const publicDirectory = path.join(__dirname, "public");
 const serverless = require("serverless-http");
 // const nodemailer = require("nodemailer");
@@ -21,8 +21,8 @@ app.set("views", "./views");
 app.set("view engine", "ejs");
 
 // live-reload browser on client side changes
-const liveReloadServer = livereload.createServer();
-liveReloadServer.watch(publicDirectory);
+// const liveReloadServer = livereload.createServer();
+// liveReloadServer.watch(publicDirectory);
 
 // routes
 app.get("/", (req, res) => {

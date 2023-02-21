@@ -3,37 +3,23 @@ const app = express();
 const path = require("path");
 const publicDirectory = path.join(__dirname, "public");
 const serverless = require("serverless-http");
-// const nodemailer = require("nodemailer");
-// require("dotenv").config();
-// const bodyParser = require("body-parser");
-// const helmet = require("helmet");
 
 app.use(express.static(publicDirectory));
-// app.use(bodyParser.json());
-// app.use(
-//   bodyParser.urlencoded({
-//     extended: true,
-//   })
-// );
-// app.use(helmet());
-app.set("views", "./views");
-app.set("view engine", "ejs");
 
-// routes
 app.get("/", (req, res) => {
-  res.render("index.html");
+  res.sendFile(path.join(publicDirectory, "index.html"));
 });
 
 app.get("/game", (req, res) => {
-  res.render("game");
+  res.sendFile(path.join(publicDirectory, "game.html"));
 });
 
 app.get("/rules", (req, res) => {
-  res.render("rules");
+  res.sendFile(path.join(publicDirectory, "rules.html"));
 });
 
 app.get("/pause", (req, res) => {
-  res.render("pause");
+  res.sendFile(path.join(publicDirectory, "pause.html"));
 });
 
 app.listen(process.env.PORT || 5000, () => {

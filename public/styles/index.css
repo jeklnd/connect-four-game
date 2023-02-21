@@ -291,8 +291,7 @@ Game
   justify-content: space-between;
   align-items: center;
   grid-area: 1/2/2/3;
-  padding: 1rem;
-  margin-top: 2rem;
+  padding: clamp(0rem, -0.414rem + 1.768vw, 1rem) 1rem;
 }
 
 a {
@@ -303,12 +302,18 @@ a {
   padding: 0.5625rem 1.25rem 0.625rem 1.3125rem;
   cursor: pointer;
   transition: 0.2s ease-in-out;
+  min-width: 108px;
+  text-align: center;
 }
 
 #navigation a:hover,
 #navigation a:focus,
 #navigation a:active {
   background-color: var(--ultra-red);
+}
+
+#navigation img {
+  width: clamp(2.375rem, 1.857rem + 2.21vw, 3.625rem);
 }
 
 .arrows {
@@ -348,7 +353,7 @@ Game: Game Board
 
 **********************************************/
 .game-board {
-  width: clamp(20.938rem, 14.75rem + 30.938vw, 39.5rem);
+  width: clamp(20.938rem, 13.247rem + 32.817vw, 39.5rem);
   height: 100%;
   position: relative;
   grid-area: 3/2/4/3;
@@ -391,8 +396,8 @@ Game: Player Scoreboards
 
 .scoreboard img {
   position: absolute;
-  width: 54px;
-  height: 59px;
+  width: clamp(2.375rem, 1.961rem + 1.768vw, 3.375rem);
+  height: clamp(2.688rem, 2.273rem + 1.768vw, 3.688rem);
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -455,9 +460,10 @@ Game: Player Scoreboards
     display: none;
   }
   .scoreboard {
-    max-width: clamp(8.875rem, 6.167rem + 13.542vw, 17rem);
+    max-width: clamp(8.875rem, 5.508rem + 14.365vw, 17rem);
     width: 100%;
-    max-height: clamp(5.063rem, 4.667rem + 1.979vw, 6.25rem);
+    max-height: clamp(4.375rem, 3.598rem + 3.315vw, 6.25rem);
+    margin-bottom: 1rem;
   }
   #left img {
     top: 50%;
@@ -475,7 +481,7 @@ Game: Player Scoreboards
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    top: 50%;
+    top: 55%;
   }
   #left h1 {
     position: relative;
@@ -518,7 +524,7 @@ Game: Announcer
 }
 
 #announcer img {
-  width: 191px;
+  width: clamp(9.375rem, 8.313rem + 4.53vw, 11.938rem);
 }
 
 .announcer-text {
@@ -527,11 +533,11 @@ Game: Announcer
 }
 
 .announcer-text h1 {
-  font-size: 56px;
+  font-size: clamp(3rem, 2.793rem + 0.884vw, 3.5rem);
 }
 
 .announcer-text h3 {
-  font-size: 16px;
+  font-size: clamp(0.875rem, 0.823rem + 0.221vw, 1rem);
 }
 
 .announcer-text > * {
@@ -548,17 +554,16 @@ Game: Announcer
 
 .winner {
   color: #000;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 #winner-card {
   display: none;
-  width: 285px;
-  height: 160px;
+  width: clamp(12.5rem, 10.299rem + 9.392vw, 17.813rem);
+  height: clamp(8.75rem, 8.232rem + 2.21vw, 10rem);
   border: 0.1875rem solid #000;
   box-shadow: 0 0.625rem #000;
   border-radius: 1.25rem;
@@ -568,11 +573,9 @@ Game: Announcer
 #winner-card a {
   width: 130px;
   height: 39px;
-  padding: 1rem 0.5rem;
+  margin: clamp(0.5rem, 0.293rem + 0.884vw, 1rem) 0.5rem;
   font-size: 0.9rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-align: center;
 }
 
 #colored-bar {

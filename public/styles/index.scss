@@ -173,6 +173,8 @@ Main Menu
 
 #game-rules-button {
   background-color: #fff;
+  @include flex(row wrap, flex-start, center)
+
 }
 
 /*********************************************
@@ -268,7 +270,7 @@ Game
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(fit-content(0), 1fr));
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
   grid-template-rows: repeat(4, minmax(0, auto));
   // max-height: 95%;
 }
@@ -666,12 +668,13 @@ Ingame Menu
 
   border-radius: 2.5rem;
   @include flex(row nowrap, center, center);
-  max-width: 80rem;
+  // max-width: 80rem;
   margin: auto;
+  max-width: 95%;
 }
 
 .inner-menu-container {
-  height: 100%;
+  width: 90%;
 }
 
 .ingame-header {
@@ -681,7 +684,6 @@ Ingame Menu
 }
 
 .menu-buttons-container {
-  width: 25rem;
   height: 17.25rem;
   @include flex(column nowrap, center, center);
   gap: 1.875rem;
@@ -696,4 +698,7 @@ Ingame Menu
   text-align: center;
   background-color: var(--ultra-red);
   color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -3,7 +3,6 @@ const app = express();
 const path = require("path");
 // const livereload = require("livereload");
 const publicDirectory = path.join(__dirname, "public");
-const serverless = require("serverless-http");
 // const nodemailer = require("nodemailer");
 // require("dotenv").config();
 // const bodyParser = require("body-parser");
@@ -48,12 +47,3 @@ app.listen(process.env.PORT || 5000, () => {
     console.log("Listening on port " + 5000);
   }
 });
-
-// Wrap the express app with serverless-http
-const serverlessApp = serverless(app);
-
-// Export the serverless app
-module.exports.handler = async (event, context) => {
-  const response = await serverlessApp(event, context);
-  return response;
-};

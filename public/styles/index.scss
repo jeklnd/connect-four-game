@@ -260,19 +260,24 @@ Game
   @include flex(column nowrap, center, center);
   position: relative;
   z-index: 1;
-  // height: 90%;
+}
+
+.set-height {
+  margin: 2rem 0;
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(fit-content(0), 1fr));
   grid-template-rows: repeat(4, minmax(0, auto));
+  // max-height: 95%;
 }
 
 #navigation {
   @include flex(row nowrap, space-between, center);
   grid-area: 1 / 2 / 2 / 3;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 a {
@@ -638,6 +643,7 @@ Ingame Menu
 **********************************************/
 #pause {
   display: none;
+  max-width: 90%;
 }
 #pause p {
   margin: 1.3125rem auto 1.25rem;

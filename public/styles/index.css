@@ -271,6 +271,10 @@ Game
   z-index: 1;
 }
 
+.set-height {
+  margin: 2rem 0;
+}
+
 .grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(fit-content(0), 1fr));
@@ -284,6 +288,7 @@ Game
   align-items: center;
   grid-area: 1/2/2/3;
   padding: 1rem;
+  margin-top: 2rem;
 }
 
 a {
@@ -636,6 +641,7 @@ Ingame Menu
 **********************************************/
 #pause {
   display: none;
+  max-width: 90%;
 }
 
 #pause p {

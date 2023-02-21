@@ -273,6 +273,7 @@ Game
   align-items: center;
   position: relative;
   z-index: 1;
+  padding: 4rem 0;
 }
 
 .set-height {
@@ -576,6 +577,10 @@ Game: Announcer
   margin: clamp(0.5rem, 0.293rem + 0.884vw, 1rem) 0.5rem;
   font-size: 0.9rem;
   text-align: center;
+}
+
+#winning-h1 {
+  margin-bottom: 0.3rem;
 }
 
 #colored-bar {

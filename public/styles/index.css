@@ -308,7 +308,6 @@ a {
 }
 
 #navigation a:hover,
-#navigation a:focus,
 #navigation a:active {
   background-color: var(--ultra-red);
 }

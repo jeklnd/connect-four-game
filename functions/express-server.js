@@ -3,23 +3,27 @@ const app = express();
 const path = require("path");
 const publicDirectory = path.join(__dirname, "public");
 const serverless = require("serverless-http");
+const ejs = require("ejs");
 
 app.use(express.static(publicDirectory));
 
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+
 app.get("/", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "index.html"));
+  res.render("index");
 });
 
 app.get("/game", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "game.html"));
+  res.render("game");
 });
 
 app.get("/rules", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "rules.html"));
+  res.render("rules");
 });
 
 app.get("/pause", (req, res) => {
-  res.sendFile(path.join(publicDirectory, "pause.html"));
+  res.render("pause");
 });
 
 app.listen(process.env.PORT || 5000, () => {
